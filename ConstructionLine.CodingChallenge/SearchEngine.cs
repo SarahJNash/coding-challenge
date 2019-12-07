@@ -17,10 +17,29 @@ namespace ConstructionLine.CodingChallenge
 
         public SearchResults Search(SearchOptions options)
         {
-            // TODO: search logic goes here.
+            var shirts = _shirts.Where((s) => options.Colors.Contains(s.Color) && options.Sizes.Contains(s.Size)).ToList();
+
+            var colorCounts = new List<ColorCount>();
+
+            foreach (var color in Color.All)
+            {
+                colorCounts.Add(new ColorCount { Color = color, Count = shirts.Count((s) => s.Color == color) });
+            }
+
+            var sizeCounts = new List<SizeCount>();
+
+            foreach (var size in Size.All)
+            {
+                sizeCounts.Add(new SizeCount { Size = size, Count = shirts.Count((s) => s.Size == size) });
+            }
+
 
             return new SearchResults
             {
+                Shirts = shirts,
+                ColorCounts = colorCounts,
+                SizeCounts = sizeCounts
+
             };
         }
     }
