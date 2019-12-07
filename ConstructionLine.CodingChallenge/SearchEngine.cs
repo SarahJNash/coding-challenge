@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace ConstructionLine.CodingChallenge
 {
@@ -33,13 +34,11 @@ namespace ConstructionLine.CodingChallenge
                 sizeCounts.Add(new SizeCount { Size = size, Count = shirts.Count((s) => s.Size == size) });
             }
 
-
             return new SearchResults
             {
                 Shirts = shirts,
                 ColorCounts = colorCounts,
                 SizeCounts = sizeCounts
-
             };
         }
     }
